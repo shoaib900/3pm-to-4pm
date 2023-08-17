@@ -1,42 +1,28 @@
 var express = require("express")
 var app = express();
-// var path = require("path")
-// var mongoose = require("mongoose")
 
-// app.use(express.json());
-// app.use(express.urlencoded({extended:false}));
-// app.use(express.static(path.join(__dirname,"/static")))
+require("dotenv").config();
+var port =process.env.port || 8080
 
-// mongoose.connect("mongodb+srv://shoaib:0000plm@cluster0.hud6pwx.mongodb.net/auth")
-// .then(() => console.log("mongo DB is connected ..."))
-// .catch((err) => console.log(err))
+var path = require("path")
+var connectDB = require("./DB/database")
+connectDB();
 
-// const route = require("./routes/auth");
-// app.use("/",route)
-
-// app.get("/",(req,res) => {
-//     res.sendFile(__dirname + "/static/index.html")
-// })
-
-var fs = require("fs");
-
-// fs.mkdirSync("Shoaib")
-
-// fs.writeFileSync("./Shoaib/info.txt","hello Mr. Shoaib ")
-
-// fs.appendFileSync("./Shoaib/info.txt","🙌 thanks")
-
-// var read = fs.readFileSync("Shoaib/info.txt","utf-8")
-// console.log(read)
-
-// fs.renameSync("Shoaib/info.txt","Shoaib/information.txt")
-
-fs.unlinkSync("Shoaib/information.txt")
-fs.rmdirSync("Shoaib")
+app.set("view engine","ejs")
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname,"/static")))
 
 
 
-app.listen(8080,console.log("server is running now..."))
+const route = require("./routes/auth")
+app.use("/",route)
+
+app.get("/",(req,res) => {
+    res.render(__dirname + "/static/index.ejs")
+})
+
+app.listen(port,console.log(`server is running now... ${port}`))
 
 
 

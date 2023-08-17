@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .table{
+            width: 500p;
+            border: 1px solid black;
+        }
+        .table > thead{
+            background-color: black;
+            color: white;
+        }
+        .table > tr > td{
+            padding: 1px 5px;
+            border: 1px solid black;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <th>username</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>status</th>
+                <th colspan="2">actions</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>shoaib99T</td>
+                    <td>rshoaib376@gmail.com</td>
+                    <td>male</td>
+                    <td>active</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

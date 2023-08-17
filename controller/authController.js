@@ -1,26 +1,33 @@
 var collection = require("../Model/authModel");
 var path = require("path")
 
-const signup = async (req, res) => {
+// create,find,update,delete
+
+const Create = async (req, res) => {
     const data = {
-      name: req.body.username,
-      password: req.body.password,
+      username: req.body.username,
+      email: req.body.email,
+      gender:req.body.gender,
+      status:req.body.status
     };
-    await collection.insertMany([data]);
-    res.sendStatus(200);
+    await collection.insertMany([data])
+    .then(() => {
+      res.send({users: data})
+    })
   };
   
-  const login = async (req, res) => {
-      try {
-        const check = await collection.findOne({ name: req.body.username });
-      if (check.password === req.body.password) {
-        res.sendStatus(200);
-      } else {
-        res.send("wrong password");
-      }
-    } catch (error) {
-      res.send("wrong details");
-    }
-  };
+  const Find = async (req, res) => {
+         collection.find()
+         .then(user => {
+          res.send(user)
+         })
+         .catch( error => {
+          console.log(error)
+         })
+  }
 
-module.exports = { signup, login };
+  const Update=()=> {};
+  const Delete =() => {}
+
+
+module.exports = { Create, Find,Update,Delete };
